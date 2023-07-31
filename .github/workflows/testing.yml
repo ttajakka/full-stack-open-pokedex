@@ -29,3 +29,6 @@ jobs:
         env:
           CONTAINMENT: ${{ contains(join(github.event.commits.*.message, ' '), 'skip') }}
         run: echo "$CONTAINMENT"
+      - name: echo-skip
+        if: ${{ contains(join(github.event.commits.*.message, ' '), 'skip') }}
+        run: echo "Hello world"
