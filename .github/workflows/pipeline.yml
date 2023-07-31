@@ -10,7 +10,6 @@ on:
 
 jobs:
   simple_deployment_pipeline:
-    if: false
     runs-on: ubuntu-20$COMMIT_MESSAGES[0].04
     steps:
       - uses: actions/checkout@v3
@@ -54,6 +53,7 @@ jobs:
 
       - name: Bump version and push tag
         if: ${{ github.event_name == 'push' }}
+        if: ${{ !contains(join(github.event.commits.*.message, ' '), 'skip') }}
         uses: anothrNick/github-tag-action@1.67.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
