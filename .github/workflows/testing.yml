@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-`bs:
+jobs:
   a_test_job:
     runs-on: ubuntu-20.04
     steps:
