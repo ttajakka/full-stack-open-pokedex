@@ -19,9 +19,9 @@ jobs:
         run: echo "$COMMITS"
       - name: commit messages
         env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message[0]) }}
         run: echo "$COMMIT_MESSAGES"
-      - name: contain
-        env:
-          CONTAINMENT: ${{ contains(toJson(github.event.commits.*.message[0]), "skip")}}
-        run: echo "$COINTAINMENT"
+      # - name: contain
+      #   env:
+      #     CONTAINMENT: ${{ contains(toJson(github.event.commits.*.message[0]), "skip")}}
+      #   run: echo "$COINTAINMENT"
