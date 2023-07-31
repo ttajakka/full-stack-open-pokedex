@@ -31,4 +31,4 @@ jobs:
         run: echo "$CONTAINMENT"
       - name: echo-skip
         if: ${{ contains(join(github.event.commits.*.message, ' '), 'skip') }}
-        run: echo "Hello world"
+        run: echo "Hello Oppenheimer"
