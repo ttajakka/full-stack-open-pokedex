@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-jobs:
+`bs:
   a_test_job:
     runs-on: ubuntu-20.04
     steps:
@@ -19,9 +19,13 @@ jobs:
         run: echo "$COMMITS"
       - name: commit messages
         env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message[0]) }}
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
-      # - name: contain
-      #   env:
-      #     CONTAINMENT: ${{ contains(toJson(github.event.commits.*.message[0]), "skip")}}
-      #   run: echo "$COINTAINMENT"
+      - name: one commit message
+        env:
+          COMMIT_MESSAGE: ${{ toJson(join(github.event.commits.*.message, ' ')) }}
+        run: echo "$COMMIT_MESSAGE"
+      - name: contain
+        env:
+          CONTAINMENT: ${{ contains(toJson(github.event.commits.*.message[0]), 'skip')}}
+        run: echo "$COINTAINMENT"
