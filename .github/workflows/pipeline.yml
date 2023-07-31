@@ -10,7 +10,7 @@ on:
 
 jobs:
   simple_deployment_pipeline:
-    runs-on: ubuntu-20$COMMIT_MESSAGES[0].04
+    runs-on: ubuntu-20
     steps:
       - uses: actions/checkout@v3
       
