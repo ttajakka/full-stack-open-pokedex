@@ -28,4 +28,4 @@ jobs:
       - name: contain
         env:
           CONTAINMENT: ${{ contains(join(github.event.commits.*.message, ' '), 'skip') }}
-        run: echo "$COINTAINMENT"
+        run: echo "$CONTAINMENT"
