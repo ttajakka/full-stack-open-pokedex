@@ -6,6 +6,9 @@ import ErrorMessage from './ErrorMessage'
 import PokemonPage from './PokemonPage'
 import PokemonList from './PokemonList'
 
+// random line to break build
+import foo from './bar'
+
 const mapResults = (({ results }) => results.map(({ url, name }) => ({
   url,
   name,

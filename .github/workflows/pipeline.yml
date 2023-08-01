@@ -10,7 +10,6 @@ on:
 
 jobs:
   simple_deployment_pipeline:
-    if: false
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -29,6 +28,13 @@ jobs:
       
       - name: build
         run: npm run build
+
+      - name: error notification on Discord
+        if: failure()
+        with:
+          severity: error
+          details: Test Failed!
+          webhookUrl: ${{ secrets.TUJUNKI_WEBHOOK }}
       
       - name: test
         run: npm run test
@@ -63,12 +69,13 @@ jobs:
         uses: rjstone/discord-webhook-notify@v1
         with:
           severity: info
-          description: to https://wandering-wave-8411.fly.dev/ by 
+          description: to https://wandering-wave-8411.fly.dev/ by ${{ github.event.pusher.name }}
           text: A new version of Pokedex deployed
           webhookUrl: ${{ secrets.TUJUNKI_WEBHOOK }}
 
   discord_webhook:
     runs-on: ubuntu-20.04
+    if: false
     steps:
       - name: console log
         if: false
