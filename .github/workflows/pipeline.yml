@@ -80,7 +80,7 @@ jobs:
         if: success()
         with:
           severity: info
-          description: to https://wandering-wave-8411.fly.dev/ by ${{ toJson(github.event.pusher.name) }}
+          description: to https://wandering-wave-8411.fly.dev/ by ${{ github.event.pusher.name }}
           details: Test Succeeded!
           text: A new version of Pokedex deployed
           webhookUrl: ${{ secrets.TUJUNKI_WEBHOOK }}
