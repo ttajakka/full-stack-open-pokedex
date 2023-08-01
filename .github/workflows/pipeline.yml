@@ -71,6 +71,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: console log
+        if: false
         env:
           GITHUB_CONTEXT: ${{ toJson(github.event.pusher.name) }}
         run: echo "$GITHUB_CONTEXT"
@@ -79,7 +80,7 @@ jobs:
         if: success()
         with:
           severity: info
-          description: to https://wandering-wave-8411.fly.dev/ by 
+          description: to https://wandering-wave-8411.fly.dev/ by ${{ toJson(github.event.pusher.name) }}
           details: Test Succeeded!
           text: A new version of Pokedex deployed
           webhookUrl: ${{ secrets.TUJUNKI_WEBHOOK }}
