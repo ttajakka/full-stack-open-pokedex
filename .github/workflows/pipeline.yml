@@ -72,7 +72,7 @@ jobs:
     steps:
       - name: console log
         env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
+          GITHUB_CONTEXT: ${{ toJson(github.event) }}
         run: echo "$GITHUB_CONTEXT"
       - name: Test Success
         uses: rjstone/discord-webhook-notify@v1
@@ -81,6 +81,7 @@ jobs:
           severity: info
           description: to https://wandering-wave-8411.fly.dev/ by 
           details: Test Succeeded!
+          text: A new version of Pokedex deployed
           webhookUrl: ${{ secrets.TUJUNKI_WEBHOOK }}
       - name: Test Failure
         uses: rjstone/discord-webhook-notify@v1
