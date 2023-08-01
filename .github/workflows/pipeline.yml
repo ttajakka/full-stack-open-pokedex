@@ -36,7 +36,7 @@ jobs:
           severity: error
           text: Build failed
           description: commit ${{ join(github.event.commits.*.url, ' ') }} by ${{ join(github.event.commits.*.committer.name, ' ') }} broke the build :(
-          webhookUrl: ${{ secrets.TUJUNKI_WEBHOOK }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       
       - name: test
         run: npm run test
@@ -73,37 +73,4 @@ jobs:
           severity: info
           description: to https://wandering-wave-8411.fly.dev/ by ${{ github.event.pusher.name }}
           text: A new version of Pokedex deployed
-          webhookUrl: ${{ secrets.TUJUNKI_WEBHOOK }}
-
-  discord_webhook:
-    runs-on: ubuntu-20.04
-    if: false
-    steps:
-      - name: console log
-        if: false
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github.event.pusher.name) }}
-        run: echo "$GITHUB_CONTEXT"
-      - name: Test Success
-        uses: rjstone/discord-webhook-notify@v1
-        if: success()
-        with:
-          severity: info
-          description: to https://wandering-wave-8411.fly.dev/ by ${{ github.event.pusher.name }}
-          details: Test Succeeded!
-          text: A new version of Pokedex deployed
-          webhookUrl: ${{ secrets.TUJUNKI_WEBHOOK }}
-      - name: Test Failure
-        uses: rjstone/discord-webhook-notify@v1
-        if: failure()
-        with:
-          severity: error
-          details: Test Failed!
-          webhookUrl: ${{ secrets.TUJUNKI_WEBHOOK }}
-      - name: Test Cancelled
-        uses: rjstone/discord-webhook-notify@v1
-        if: cancelled()
-        with:
-          severity: warn
-          details: Test Cancelled!
-          webhookUrl: ${{ secrets.TUJUNKI_WEBHOOK }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
