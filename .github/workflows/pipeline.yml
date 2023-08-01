@@ -49,21 +49,22 @@ jobs:
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
+    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), 'skip') }}
     steps:
       - uses: actions/checkout@v3
 
       - name: Bump version and push tag
-        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), 'skip') }}
         uses: anothrNick/github-tag-action@1.67.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
 
+      - name: Discord notification
         uses: rjstone/discord-webhook-notify@v1
-        if: success()
         with:
           severity: info
-          details: Test Succeeded!
+          details: to https://wandering-wave-8411.fly.dev/ by 
+          text: A new version of Pokedex deployed
           webhookUrl: ${{ secrets.TUJUNKI_WEBHOOK }}
 
   discord_webhook:
