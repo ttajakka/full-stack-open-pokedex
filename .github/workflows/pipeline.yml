@@ -31,6 +31,7 @@ jobs:
 
       - name: error notification on Discord
         if: failure()
+        uses: rjstone/discord-webhook-notify@v1
         with:
           severity: error
           details: Test Failed!
