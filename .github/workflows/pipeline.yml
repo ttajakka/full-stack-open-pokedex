@@ -85,5 +85,5 @@ jobs:
         uses: jtalk/url-health-check-action@v3
         with:
           url: https://fly.io/apps/wandering-wave-8411
-          max-attempts: 5s
-          retry-delay: 10
+          max-attempts: 5
+          retry-delay: 10s
