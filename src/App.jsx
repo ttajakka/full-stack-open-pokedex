@@ -6,11 +6,6 @@ import ErrorMessage from './ErrorMessage'
 import PokemonPage from './PokemonPage'
 import PokemonList from './PokemonList'
 
-// random line to break build
-// import foo from './bar'
-// eslint-disable-next-line no-console
-// console.log(foo)
-
 const mapResults = (({ results }) => results.map(({ url, name }) => ({
   url,
   name,
